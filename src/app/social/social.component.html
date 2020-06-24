@@ -1,0 +1,18 @@
+<app-friend *ngFor="let friend of friends" [friend]="friend"></app-friend>
+<nb-card>
+  <nb-card-body>
+    <form (ngSubmit)="search()">
+      <p>Add a friend...</p>
+      <nb-form-field class="w-100">
+        <nb-icon nbPrefix icon="plus"></nb-icon>
+        <div class="placeholder" [attr.data-placeholder]="getPlaceholder()">
+          <input (ngModelChange)="closeWarning()" id="name" name="name" class="w-100" type="text" [(ngModel)]="username"
+            #name="ngModel" nbInput>
+        </div>
+      </nb-form-field>
+      <nb-alert closable (close)="closeWarning()" *ngIf="error || success" status="{{error?'warning':'success'}}">
+        {{error ? error : success}}
+      </nb-alert>
+    </form>
+  </nb-card-body>
+</nb-card>

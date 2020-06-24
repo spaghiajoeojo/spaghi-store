@@ -1,0 +1,18 @@
+<nb-card>
+  <nb-card-header>
+    <h6 class="text-center">
+      CHOOSE YOUR AVATAR
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+
+    <form class="in-padding" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <input nbInput type="file" name="avatar" (change)="onFileChange($event)" />
+      <br>
+      <button class="float-right" nbButton type="submit">Upload</button>
+
+    </form>
+  </nb-card-body>
+
+</nb-card>

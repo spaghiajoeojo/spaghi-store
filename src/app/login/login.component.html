@@ -1,0 +1,41 @@
+<nb-card class="login-modal">
+  <nb-card-body>
+    <nb-tabset>
+      <nb-tab tabTitle="Login">
+        <form>
+          <div class="min-h-250 in-padding">
+            <nb-form-field>
+              <nb-icon nbPrefix icon="envelope"></nb-icon>
+              <input type="text" placeholder="email" name="login-email" [(ngModel)]="user.email" nbInput>
+            </nb-form-field>
+            <nb-form-field>
+              <nb-icon nbPrefix icon="key"></nb-icon>
+              <input placeholder="password" type="password" name="login-password" [(ngModel)]="user.password" nbInput>
+            </nb-form-field>
+          </div>
+          <button class="submit" nbButton size="medium" (click)="login()">LOGIN</button>
+        </form>
+      </nb-tab>
+      <nb-tab tabTitle="Sign Up">
+        <form>
+          <div class="min-h-250 in-padding">
+            <nb-form-field>
+              <nb-icon nbPrefix icon="user"></nb-icon>
+              <input type="text" placeholder="username" name="signup-name" [(ngModel)]="user.name" nbInput>
+            </nb-form-field>
+            <nb-form-field>
+              <nb-icon nbPrefix icon="envelope"></nb-icon>
+              <input type="text" placeholder="email" name="signup-email" [(ngModel)]="user.email" nbInput>
+            </nb-form-field>
+            <nb-form-field>
+              <nb-icon nbPrefix icon="key"></nb-icon>
+              <input placeholder="password" type="password" name="signup-password" [(ngModel)]="user.password" nbInput>
+            </nb-form-field>
+          </div>
+          <button class="submit" nbButton size="medium" (click)="signUp()">SIGN UP</button>
+        </form>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+
+</nb-card>

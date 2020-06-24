@@ -1,0 +1,7 @@
+<nb-card>
+  <nb-card-body>
+    <nb-user size="large" [name]="friend.name" [picture]="friend.avatarUrl"
+      [badgeText]="friend.online? 'online':'offline'" [badgeStatus]="friend.online? 'success':'danger'"
+      badgePosition="bottom left"></nb-user>
+  </nb-card-body>
+</nb-card>

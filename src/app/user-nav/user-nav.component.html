@@ -1,0 +1,16 @@
+<div *ngIf="user.name" class="float-right">
+  <span>
+
+    <nb-user [name]="getUsername()" [title]="user.email" [picture]="user.avatar" [nbContextMenu]="contextMenuItems"
+      nbContextMenuTrigger="hover" nbContextMenuTag="user-nav-menu">
+    </nb-user>
+  </span>
+  <div>
+    <span class="nowrap float-right">
+      {{user.currency}}<img [src]="coinPath" class="coin">
+      <span *ngIf="user.vip" class="small-text">
+        <nb-icon class="gold" icon="star"></nb-icon><span> VIP</span>
+      </span>
+    </span>
+  </div>
+</div>
