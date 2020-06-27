@@ -7,6 +7,10 @@
     "name": "Lorenzo Beccaro",
     "email": "spaghiajoeojo@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spaghiajoeojo/spaghi-store.git"
+  },
   "keywords": [
     "angular",
     "angular 9",
@@ -37,7 +41,8 @@
     "test:watch": "ng test",
     "e2e": "npm run build:prod && cross-env TS_NODE_PROJECT='e2e/tsconfig.e2e.json' mocha --timeout 300000 --require ts-node/register e2e/**/*.e2e.ts",
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "deploy": "npm run build:prod && electron-builder build --windows --publish always"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "9.1.0",
@@ -98,6 +103,7 @@
     "@angular/cdk": "9.2.4",
     "@fortawesome/fontawesome-free": "5.13.0",
     "@nebular/eva-icons": "5.1.0",
-    "@nebular/theme": "5.1.0"
+    "@nebular/theme": "5.1.0",
+    "electron-updater": "4.3.1"
   }
 }

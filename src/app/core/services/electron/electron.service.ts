@@ -8,6 +8,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { AppConfig } from '../../../../environments/environment';
 import { AppSettings } from '../../../app.settings';
+import { NbToastrService, NbToastRef, NbGlobalPhysicalPosition } from '@nebular/theme';
+import { CustomDialogService } from '../../../custom-dialog.service';
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +26,12 @@ export class ElectronService {
   path: typeof path;
   app: typeof app;
 
+
   get isElectron(): boolean {
     return !!(window && window.process && window.process.type);
   }
 
-  constructor() {
+  constructor(private toastrService: NbToastrService, private customDialogService: CustomDialogService) {
     // Conditional imports
     if (this.isElectron) {
       this.ipcRenderer = window.require('electron').ipcRenderer;
@@ -34,6 +40,8 @@ export class ElectronService {
       this.path = window.require('path');
       this.app = remote.app;
 
+
+
       this.childProcess = window.require('child_process');
       this.fs = window.require('fs');
 
@@ -41,8 +49,38 @@ export class ElectronService {
         this.contextMenu();
       }
 
+      // const toastRef: NbToastRef = this.toastrService.show("");
+      // toastRef.close();
+
+      ipcRenderer.send('app_version');
+
+      ipcRenderer.on('app_version', (event, arg) => {
+        ipcRenderer.removeAllListeners('app_version');
+        console.log('Version ' + arg.version);
+      });
+
+      ipcRenderer.on('update_available', this.notifyUpdate);
+
+      ipcRenderer.on('update_downloaded', () => {
+        ipcRenderer.removeAllListeners('update_downloaded');
+        this.onUpdateReady();
+      });
 
     }
+  }
+
+  onUpdateReady() {
+    this.customDialogService.waitDialog("Spaghi Store will restart in 5 seconds...");
+    setTimeout(this.restartApp, 5000);
+  }
+
+  notifyUpdate() {
+    ipcRenderer.removeAllListeners('update_available');
+    let toast: NbToastRef = this.toastrService.show("Downloading...", "Update available", { icon: "arrow-alt-circle-down", status: "control", duration: 10000, position: NbGlobalPhysicalPosition.BOTTOM_RIGHT });
+  }
+
+  restartApp() {
+    ipcRenderer.send('restart_app');
   }
 
   reload() {

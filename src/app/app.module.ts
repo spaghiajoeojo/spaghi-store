@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import '../polyfills';
 
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -19,7 +20,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { HomeModule } from './home/home.module';
 import { DetailModule } from './detail/detail.module';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbDialogModule, NbCardModule, NbTabsetModule, NbInputModule, NbFormFieldModule, NbIconModule, NbButtonModule, NbUserModule, NbContextMenuModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbDialogModule, NbCardModule, NbTabsetModule, NbInputModule, NbFormFieldModule, NbIconModule, NbButtonModule, NbUserModule, NbContextMenuModule, NbToastrModule, NbSpinnerModule } from '@nebular/theme';
 
 
 
@@ -33,6 +34,7 @@ import { GamesComponent } from './games/games.component';
 import { SocialComponent } from './social/social.component';
 import { StoreComponent } from './store/store.component';
 import { FriendComponent } from './friend/friend.component';
+import { WaitDialogComponent } from './wait-dialog/wait-dialog.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -40,7 +42,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent, LoginComponent, UserNavComponent, UploadComponent],
+  declarations: [AppComponent, MenuComponent, LoginComponent, UserNavComponent, UploadComponent, WaitDialogComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -65,6 +67,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     SocialModule,
     StoreModule,
     RouterModule,
+    NbSpinnerModule,
+    BrowserAnimationsModule,
+    NbToastrModule.forRoot(),
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot(),

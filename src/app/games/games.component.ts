@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GamesComponent implements OnInit {
 
+  public games: Array<{ title: string, executable: string, thumbnail: string }> = [];
+
   constructor() { }
 
   ngOnInit(): void {
