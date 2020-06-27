@@ -20,15 +20,9 @@
     "!tslint.json"
   ],
   "win": {
-    "icon": "dist/assets/icons",
+    "icon": "dist/assets/icons/icon.ico",
     "target": [
-      "portable"
-    ]
-  },
-  "mac": {
-    "icon": "dist/assets/icons",
-    "target": [
-      "dmg"
+      "nsis"
     ]
   },
   "linux": {
