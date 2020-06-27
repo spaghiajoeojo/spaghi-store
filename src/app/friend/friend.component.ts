@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FriendComponent implements OnInit {
 
-  @Input() public friend: { name: string, avatar: string, online: boolean }
+  @Input() public friend: { name: string, avatarUrl: string, online: boolean }
 
   constructor() { }
 
